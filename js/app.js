@@ -288,6 +288,9 @@ class ShoreSquadApp {
 
         // Form submissions
         this.setupFormListeners();
+        
+        // Next cleanup actions
+        this.setupNextCleanupListeners();
     }
 
     setupModalListeners() {
@@ -341,6 +344,36 @@ class ShoreSquadApp {
             createEventForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 this.handleCreateEvent(e);
+            });
+        }
+    }
+
+    setupNextCleanupListeners() {
+        // Join This Cleanup button
+        const joinCleanupBtn = document.querySelector('.next-cleanup-section .btn-primary');
+        if (joinCleanupBtn) {
+            joinCleanupBtn.addEventListener('click', () => {
+                this.handleJoinNextCleanup();
+            });
+        }
+
+        // Get Directions button
+        const directionsBtn = document.querySelector('.next-cleanup-section .btn-outline');
+        if (directionsBtn) {
+            directionsBtn.addEventListener('click', () => {
+                this.handleGetDirections();
+            });
+        }
+
+        // Hero Join Next Cleanup button
+        const heroJoinBtn = document.getElementById('join-cleanup-btn');
+        if (heroJoinBtn) {
+            heroJoinBtn.addEventListener('click', () => {
+                // Scroll to next cleanup section
+                const nextCleanupSection = document.getElementById('next-cleanup');
+                if (nextCleanupSection) {
+                    nextCleanupSection.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         }
     }
@@ -433,6 +466,44 @@ class ShoreSquadApp {
             event.participants++;
             this.renderEvents();
             this.showNotification(`Joined "${event.title}"!`, 'success');
+        }
+    }
+
+    handleJoinNextCleanup() {
+        // Update the participant count in the next cleanup section
+        const participantElement = document.querySelector('.next-cleanup-section .detail-text');
+        if (participantElement && participantElement.textContent.includes('crew members')) {
+            const currentCount = parseInt(participantElement.textContent.match(/\d+/)[0]);
+            participantElement.textContent = `${currentCount + 1} crew members joined`;
+        }
+        
+        this.showNotification('Successfully joined the Pasir Ris Beach cleanup!', 'success');
+    }
+
+    handleGetDirections() {
+        // Open Google Maps with directions to Pasir Ris Beach
+        const coordinates = '1.381497,103.955574';
+        const destination = 'Pasir Ris Beach, Singapore';
+        const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination)}&destination_place_id=ChIJi358__89XDQR_Ct6LEsfJoI`;
+        
+        // Try to open in Google Maps app first, then fallback to web
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        if (/android/i.test(userAgent)) {
+            // Android
+            window.open(`google.navigation:q=${coordinates}`, '_system');
+            setTimeout(() => {
+                window.open(googleMapsUrl, '_blank');
+            }, 500);
+        } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+            // iOS
+            window.open(`maps://maps.google.com/maps?daddr=${coordinates}&amp;ll=`, '_system');
+            setTimeout(() => {
+                window.open(googleMapsUrl, '_blank');
+            }, 500);
+        } else {
+            // Desktop or other
+            window.open(googleMapsUrl, '_blank');
         }
     }
 
