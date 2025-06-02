@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoreSquad - Beach Cleanup App</title>
+    <meta name="description" content="Rally your crew, track weather, and hit the next beach cleanup with our dope map app!">
+    <meta name="theme-color" content="#0077be">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading ShoreSquad...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/logo.svg" alt="ShoreSquad" class="nav-logo">
+                <span class="nav-title">ShoreSquad</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#map" class="nav-link">Map</a>
+                <a href="#events" class="nav-link">Events</a>
+                <a href="#crew" class="nav-link">My Crew</a>
+                <a href="#profile" class="nav-link">Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Rally Your Crew, Clean Our Shores</h1>
+            <p class="hero-subtitle">Track weather, find events, and make beach cleanup fun with your squad!</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" id="join-cleanup-btn">Join Next Cleanup</button>
+                <button class="btn btn-secondary" id="create-event-btn">Create Event</button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">247</span>
+                <span class="stat-label">Cleanups This Month</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">1.2k</span>
+                <span class="stat-label">Active Members</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">45 tons</span>
+                <span class="stat-label">Trash Collected</span>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Weather Widget -->
+        <section class="weather-widget" id="weather-widget">
+            <div class="weather-content">
+                <div class="weather-current">
+                    <div class="weather-temp">--°</div>
+                    <div class="weather-desc">Loading...</div>
+                </div>
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <span class="detail-label">Wind</span>
+                        <span class="detail-value">-- mph</span>
+                    </div>
+                    <div class="weather-detail">
+                        <span class="detail-label">UV Index</span>
+                        <span class="detail-value">--</span>
+                    </div>
+                    <div class="weather-detail">
+                        <span class="detail-label">Visibility</span>
+                        <span class="detail-value">-- mi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map -->
+        <section class="map-section" id="map-section">
+            <div class="section-header">
+                <h2>Cleanup Locations</h2>
+                <div class="map-controls">
+                    <button class="btn btn-sm btn-outline" id="locate-btn">
+                        📍 Find My Location
+                    </button>
+                    <button class="btn btn-sm btn-outline" id="filter-btn">
+                        🔍 Filter Events
+                    </button>
+                </div>
+            </div>
+            <div class="map-container">
+                <div id="map" class="map"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-marker active"></span>
+                        <span>Active Events</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker upcoming"></span>
+                        <span>Upcoming Events</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-marker completed"></span>
+                        <span>Completed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cleanup Events -->
+        <section class="events-section" id="events">
+            <div class="section-header">
+                <h2>Upcoming Beach Cleanups</h2>
+                <button class="btn btn-primary" id="create-event-btn-2">+ Create Event</button>
+            </div>
+            <div class="events-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="today">Today</button>
+                <button class="filter-btn" data-filter="week">This Week</button>
+                <button class="filter-btn" data-filter="month">This Month</button>
+            </div>
+            <div class="events-grid" id="events-list">
+                <!-- Events will be dynamically loaded here -->
+            </div>
+            <div class="load-more-container">
+                <button class="btn btn-outline" id="load-more-events">Load More Events</button>
+            </div>
+        </section>
+
+        <!-- My Crew Section -->
+        <section class="crew-section" id="crew">
+            <div class="section-header">
+                <h2>My Crew</h2>
+                <button class="btn btn-secondary" id="invite-crew-btn">Invite Friends</button>
+            </div>
+            <div class="crew-stats">
+                <div class="crew-stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Crew Members</span>
+                </div>
+                <div class="crew-stat">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Events Joined</span>
+                </div>
+                <div class="crew-stat">
+                    <span class="stat-number">156 lbs</span>
+                    <span class="stat-label">Trash Collected</span>
+                </div>
+            </div>
+            <div class="crew-members" id="crew-members">
+                <!-- Crew members will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ShoreSquad</h3>
+                <p>Making beach cleanup fun, social, and impactful.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="TikTok">🎵</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShoreSquad. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="create-event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Beach Cleanup Event</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <form class="event-form" id="create-event-form">
+                <div class="form-group">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" id="event-title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-location">Location</label>
+                    <input type="text" id="event-location" name="location" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="event-date">Date</label>
+                        <input type="date" id="event-date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-time">Time</label>
+                        <input type="time" id="event-time" name="time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Description</label>
+                    <textarea id="event-description" name="description" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancel-event">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

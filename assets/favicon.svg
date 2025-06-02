@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077be;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#20b2aa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="32" height="32" rx="6" fill="url(#faviconGradient)"/>
+  
+  <!-- Wave -->
+  <path d="M0,20 Q8,16 16,20 T32,20 L32,32 L0,32 Z" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- Beach cleanup symbol -->
+  <circle cx="10" cy="12" r="1.5" fill="#ff6b35"/>
+  <rect x="9.5" y="13.5" width="1" height="4" fill="#8b4513"/>
+  
+  <ellipse cx="22" cy="14" rx="2.5" ry="4" fill="rgba(255,255,255,0.8)"/>
+</svg>
