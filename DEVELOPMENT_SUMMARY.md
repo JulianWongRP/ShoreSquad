@@ -6,6 +6,7 @@
 - [x] **HTML5 Boilerplate**: Complete semantic structure with accessibility features
 - [x] **Modern CSS Design**: Ocean-themed color palette with responsive design
 - [x] **Interactive JavaScript**: ES6+ features with modern async/await patterns
+- [x] **Google Maps Integration**: Embedded maps with Pasir Ris Beach cleanup location
 - [x] **Progressive Web App**: Manifest, Service Worker, and offline capabilities
 - [x] **Live Server Setup**: Development environment with hot reload
 - [x] **Git Integration**: Version control with comprehensive .gitignore
@@ -19,11 +20,13 @@
 
 ### Interactive Features ✅
 - [x] **Interactive Map**: Leaflet.js integration with custom markers
+- [x] **Google Maps Embed**: Next cleanup location with animated pin overlay
 - [x] **Weather Widget**: Real-time weather display with mock data
 - [x] **Event Management**: Create, join, and filter cleanup events
 - [x] **Crew System**: Social features for team building
 - [x] **Modal System**: Event creation with form validation
 - [x] **Notification System**: User feedback for actions
+- [x] **Navigation Integration**: Get directions to cleanup locations
 
 ### Performance & PWA ✅
 - [x] **Service Worker**: Caching strategy for offline functionality

@@ -475,9 +475,18 @@ class ShoreSquadApp {
         if (participantElement && participantElement.textContent.includes('crew members')) {
             const currentCount = parseInt(participantElement.textContent.match(/\d+/)[0]);
             participantElement.textContent = `${currentCount + 1} crew members joined`;
+            
+            // Update button state
+            const joinBtn = document.querySelector('.next-cleanup-section .btn-primary');
+            if (joinBtn && !joinBtn.classList.contains('joined')) {
+                joinBtn.textContent = '✓ Joined!';
+                joinBtn.classList.add('joined');
+                joinBtn.style.background = 'var(--sea-green)';
+                joinBtn.style.cursor = 'default';
+            }
         }
         
-        this.showNotification('Successfully joined the Pasir Ris Beach cleanup!', 'success');
+        this.showNotification('Successfully joined the Pasir Ris Beach cleanup! 🌊', 'success');
     }
 
     handleGetDirections() {

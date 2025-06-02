@@ -138,6 +138,17 @@ body {
     color: var(--primary-blue);
 }
 
+.dev-badge {
+    background: var(--coral-orange);
+    color: var(--white);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: var(--spacing-xs);
+    letter-spacing: 0.5px;
+}
+
 .nav-toggle {
     display: none;
     background: none;
@@ -384,6 +395,18 @@ body {
     border: 2px solid var(--coral-orange);
     position: relative;
     overflow: hidden;
+    animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .next-cleanup-section::before {
@@ -458,12 +481,44 @@ body {
     overflow: hidden;
     margin-bottom: var(--spacing-lg);
     box-shadow: 0 2px 15px var(--shadow);
+    transition: var(--transition);
+}
+
+.google-map-container:hover {
+    box-shadow: 0 8px 30px var(--shadow-hover);
+    transform: translateY(-2px);
 }
 
 .google-map-container iframe {
     display: block;
     border-radius: var(--radius-lg);
     filter: contrast(1.1) saturate(1.2);
+}
+
+.map-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    z-index: 1;
+}
+
+.map-loading .loading-spinner {
+    width: 30px;
+    height: 30px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.map-loading p {
+    color: var(--gray);
+    font-size: var(--font-size-sm);
 }
 
 .map-overlay {
@@ -1076,6 +1131,18 @@ body {
     }
     
     .cleanup-info {
+        text-align: center;
+    }
+    
+    .cleanup-badge {
+        position: static;
+        margin-bottom: var(--spacing-sm);
+        align-self: center;
+    }
+    
+    .next-cleanup-section .section-header {
+        flex-direction: column;
+        align-items: center;
         text-align: center;
     }
 }

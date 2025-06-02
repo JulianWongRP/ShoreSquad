@@ -12,9 +12,11 @@ ShoreSquad creates value by mobilizing young people to clean beaches, using weat
 
 ### 🗺️ Interactive Mapping
 - **Real-time Event Locations**: Find beach cleanup events near you
+- **Google Maps Integration**: Embedded maps showing next cleanup location with pin
 - **Geolocation Support**: Automatic location detection
 - **Event Status Tracking**: Active, upcoming, and completed cleanups
 - **Custom Markers**: Visual indicators for different event types
+- **Get Directions**: One-click navigation to cleanup locations
 
 ### 🌤️ Weather Integration
 - **Real-time Weather Data**: Current conditions for planning
