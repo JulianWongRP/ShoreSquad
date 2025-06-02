@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077be;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#20b2aa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="144" height="144" rx="20" fill="url(#iconGradient)"/>
+  
+  <!-- Ocean waves -->
+  <path d="M0,85 Q36,75 72,85 T144,85 L144,144 L0,144 Z" fill="rgba(255,255,255,0.2)"/>
+  <path d="M0,100 Q36,90 72,100 T144,100 L144,144 L0,144 Z" fill="rgba(255,255,255,0.3)"/>
+  <path d="M0,115 Q36,105 72,115 T144,115 L144,144 L0,144 Z" fill="rgba(255,255,255,0.4)"/>
+  
+  <!-- Beach cleanup tools -->
+  <circle cx="50" cy="50" r="8" fill="#ff6b35"/>
+  <rect x="46" y="58" width="8" height="25" fill="#8b4513"/>
+  
+  <!-- Trash bag -->
+  <ellipse cx="95" cy="65" rx="15" ry="22" fill="rgba(45,52,54,0.8)"/>
+  <rect x="90" y="43" width="10" height="12" fill="#636e72"/>
+  
+  <!-- Sun -->
+  <circle cx="35" cy="35" r="12" fill="#fdcb6e"/>
+  <line x1="35" y1="15" x2="35" y2="23" stroke="#fdcb6e" stroke-width="3"/>
+  <line x1="55" y1="35" x2="47" y2="35" stroke="#fdcb6e" stroke-width="3"/>
+  <line x1="35" y1="55" x2="35" y2="47" stroke="#fdcb6e" stroke-width="3"/>
+  <line x1="15" y1="35" x2="23" y2="35" stroke="#fdcb6e" stroke-width="3"/>
+  
+  <!-- Squad members (small circles) -->
+  <circle cx="105" cy="35" r="6" fill="rgba(255,255,255,0.9)"/>
+  <circle cx="115" cy="45" r="5" fill="rgba(255,255,255,0.8)"/>
+  <circle cx="125" cy="55" r="4" fill="rgba(255,255,255,0.7)"/>
+</svg>

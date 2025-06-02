@@ -1,0 +1,34 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "liveServer.settings.port": 3000,
+        "liveServer.settings.CustomBrowser": "chrome",
+        "liveServer.settings.donotShowInfoMsg": true,
+        "emmet.includeLanguages": {
+            "javascript": "html"
+        },
+        "files.associations": {
+            "*.svg": "xml"
+        },
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "css.validate": true,
+        "css.lint.unknownAtRules": "ignore",
+        "html.validate.scripts": true,
+        "html.validate.styles": true
+    },
+    "extensions": {
+        "recommendations": [
+            "ritwickdey.liveserver",
+            "esbenp.prettier-vscode",
+            "ms-vscode.vscode-css-peek",
+            "bradlc.vscode-tailwindcss",
+            "formulahendry.auto-rename-tag",
+            "christian-kohler.path-intellisense"
+        ]
+    }
+}
